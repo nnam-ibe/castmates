@@ -1,5 +1,9 @@
 import { get } from "@/lib/client";
-import { peopleResponseSchema, personDetailSchema } from "./types";
+import {
+  combinedCreditsSchema,
+  peopleResponseSchema,
+  personDetailSchema,
+} from "./types";
 
 export const searchPeople = async (query: string) => {
   if (query.length < 3) {
@@ -14,5 +18,11 @@ export const searchPeople = async (query: string) => {
 export const getPerson = async (id: number) => {
   const rawResponse = await get(`/person/${id}`);
   const response = personDetailSchema.parse(rawResponse);
+  return response;
+};
+
+export const getCombinedCredits = async (id: number) => {
+  const rawResponse = await get(`/person/${id}/combined_credits`);
+  const response = combinedCreditsSchema.parse(rawResponse);
   return response;
 };

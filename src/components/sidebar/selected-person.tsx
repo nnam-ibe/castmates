@@ -1,6 +1,6 @@
 import { getPerson } from "@/app/actions";
 import { imgBasePath } from "@/lib/constants";
-import { Avatar, CloseButton, Tooltip } from "@chakra-ui/react";
+import { Avatar, CloseButton, Skeleton, Tooltip } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -12,7 +12,7 @@ export const SelectedPerson = ({ id }: SelectedPersonProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const { data: person } = useQuery({
+  const { data: person, status } = useQuery({
     queryKey: ["person", id],
     queryFn: () => getPerson(id),
   });
@@ -23,20 +23,26 @@ export const SelectedPerson = ({ id }: SelectedPersonProps) => {
     const newQuery = params.toString();
     router.push(`${pathname}?${newQuery}`);
   };
+  const isLoaded = status === "success";
 
   return (
     <div className="flex w-full items-center justify-between">
-      <div className="flex gap-2 items-center">
-        <Avatar
-          name={person?.name}
-          src={`${imgBasePath}${person?.profile_path}`}
-          size="lg"
-        />
-        {person?.name}
-      </div>
-      <Tooltip label="Remove" aria-label="Remove">
-        <CloseButton onClick={handleRemove} />
-      </Tooltip>
+      <Skeleton
+        isLoaded={isLoaded}
+        className="flex w-full items-center justify-between"
+      >
+        <div className="flex gap-2 items-center">
+          <Avatar
+            name={person?.name}
+            src={`${imgBasePath}${person?.profile_path}`}
+            size="lg"
+          />
+          {person?.name}
+        </div>
+        <Tooltip label="Remove" aria-label="Remove">
+          <CloseButton onClick={handleRemove} />
+        </Tooltip>
+      </Skeleton>
     </div>
   );
 };

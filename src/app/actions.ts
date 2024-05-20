@@ -1,5 +1,5 @@
 "use server";
 
-import { searchPeople, getPerson } from "@/service/people";
+import { getCombinedCredits, getPerson, searchPeople } from "@/service/people";
 
-export { searchPeople, getPerson };
+export { getCombinedCredits, getPerson, searchPeople };
