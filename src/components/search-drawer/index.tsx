@@ -14,7 +14,7 @@ import {
   Input,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useRef, useState } from "react";
 import { ResultList } from "./result-list";
@@ -22,7 +22,6 @@ import { ResultList } from "./result-list";
 export const SearchDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounce(searchQuery, 500);
 

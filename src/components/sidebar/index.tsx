@@ -1,5 +1,6 @@
 import { SearchDrawer } from "@/components/search-drawer";
 import { Header } from "./header";
+import { SelectedList } from "./selected-list";
 
 export const Sidebar = () => {
   return (
@@ -7,6 +8,9 @@ export const Sidebar = () => {
       <Header />
       <div className="pt-8">
         <SearchDrawer />
+      </div>
+      <div>
+        <SelectedList />
       </div>
     </aside>
   );
