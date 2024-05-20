@@ -24,5 +24,17 @@ export const getPerson = async (id: number) => {
 export const getCombinedCredits = async (id: number) => {
   const rawResponse = await get(`/person/${id}/combined_credits`);
   const response = combinedCreditsSchema.parse(rawResponse);
+
+  response.cast = response.cast.sort((a, b) => {
+    if (a.release_date && b.release_date) {
+      return a.release_date.getTime() - b.release_date.getTime();
+    } else if (a.release_date) {
+      return -1;
+    } else if (b.release_date) {
+      return 1;
+    }
+    return 0;
+  });
+
   return response;
 };

@@ -28,6 +28,7 @@ export const SearchDrawer = () => {
   const { data: people } = useQuery({
     queryKey: ["people", debouncedQuery],
     queryFn: () => searchPeople(debouncedQuery),
+    staleTime: 0,
     enabled: debouncedQuery.length >= 3,
     initialData: [],
   });

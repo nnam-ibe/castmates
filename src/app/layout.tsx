@@ -23,7 +23,9 @@ export default function RootLayout({
           <div className="flex flex-col h-dvh">
             <div className="flex flex-1">
               <Sidebar />
-              <section className="flex-1">{children}</section>
+              <section className="flex-1 h-dvh overflow-y-scroll">
+                {children}
+              </section>
             </div>
           </div>
         </Providers>
