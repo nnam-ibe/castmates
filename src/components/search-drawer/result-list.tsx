@@ -13,6 +13,7 @@ export const ResultList = (props: ResultListProps) => {
       {people.map((person) => (
         <PersonResult
           key={person.id}
+          id={person.id}
           name={person.name}
           profile_path={person.profile_path}
         />
