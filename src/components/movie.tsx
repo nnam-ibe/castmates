@@ -1,6 +1,14 @@
-import { imgBasePath } from "@/lib/constants";
+import { GenreMapping, imgBasePath } from "@/lib/constants";
 import { type CombinedCredits } from "@/service/people/types";
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 type MovieProps = {
   movie: CombinedCredits["cast"][number];
@@ -26,6 +34,13 @@ export const Movie = (props: MovieProps) => {
         <Text noOfLines={3} fontSize="md">
           {movie.overview}
         </Text>
+        <Stack direction="row">
+          {movie.genre_ids.map((id) => (
+            <Badge key={id} colorScheme="blue">
+              {GenreMapping[id as keyof typeof GenreMapping] ?? "-"}
+            </Badge>
+          ))}
+        </Stack>
       </Box>
     </Flex>
   );
