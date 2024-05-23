@@ -5,6 +5,7 @@ import { Movie } from "@/components/movie";
 import { type CombinedCredits } from "@/service/people/types";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import { Loading } from "./loading";
 
 function getSharedCredits(credits: CombinedCredits["cast"][]) {
   if (credits.length < 2) {
@@ -39,21 +40,25 @@ export const Credits = () => {
     }),
   });
 
+  const isSharedCreditsEnabled =
+    people.length >= 2 && creditQueries.every((q) => q.isSuccess);
   const sharedCreditsQuery = useQuery({
     queryKey: ["shared-credits", ...people],
     queryFn: () => {
-      const creditsMap = new Map<number, CombinedCredits["cast"]>();
       const creditsArray: CombinedCredits["cast"][] = [];
       creditQueries.forEach((q) => {
         const data = q.data!;
-        creditsMap.set(data.id, data.cast);
         creditsArray.push(data.cast);
       });
 
       return getSharedCredits(creditsArray);
     },
-    enabled: people.length >= 2 && creditQueries.every((q) => q.isSuccess),
+    enabled: isSharedCreditsEnabled,
   });
+
+  if (!isSharedCreditsEnabled || !sharedCreditsQuery.data) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col gap-4 p-4">
