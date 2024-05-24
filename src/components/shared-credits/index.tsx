@@ -27,7 +27,7 @@ function getSharedCredits(credits: CombinedCredits["cast"][]) {
   return Array.from(sharedCredits);
 }
 
-export const Credits = () => {
+export const SharedCredits = () => {
   const searchParams = useSearchParams();
   const people = searchParams.getAll("p").map((id) => parseInt(id, 10));
 

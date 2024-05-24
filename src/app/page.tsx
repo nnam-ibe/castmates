@@ -1,11 +1,11 @@
-import { Credits } from "@/components/credits";
+import { SharedCredits } from "@/components/shared-credits";
 import { Suspense } from "react";
 import Loading from "./loading";
 
 export default function Home() {
   return (
     <Suspense fallback={<Loading />}>
-      <Credits />
+      <SharedCredits />
     </Suspense>
   );
 }
