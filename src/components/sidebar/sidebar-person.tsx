@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 type SelectedPersonProps = {
   id: number;
 };
-export const SelectedPerson = ({ id }: SelectedPersonProps) => {
+export const SidebarPerson = ({ id }: SelectedPersonProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();

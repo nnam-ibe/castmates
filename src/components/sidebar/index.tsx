@@ -1,12 +1,14 @@
 import { SearchDrawer } from "@/components/search-drawer";
 import { Suspense } from "react";
 import { Header } from "./header";
-import { SelectedList } from "./selected-list";
+import { SidebarPeople } from "./sidebar-people";
 
 export const Sidebar = () => {
   return (
     <aside className="h-full bg-slate-500 flex-1 rounded-xl p-3 max-w-72">
-      <Header />
+      <Suspense>
+        <Header />
+      </Suspense>
       <div className="pt-8">
         <Suspense>
           <SearchDrawer />
@@ -14,7 +16,7 @@ export const Sidebar = () => {
       </div>
       <div>
         <Suspense>
-          <SelectedList />
+          <SidebarPeople />
         </Suspense>
       </div>
     </aside>
