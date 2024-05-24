@@ -1,9 +1,11 @@
-import { Center, Spinner } from "@chakra-ui/react";
+import { MovieCardSkeleton } from "@/components/movie-card";
 
 export function Loading() {
   return (
-    <Center className="flex h-dvh">
-      <Spinner size="xl" />
-    </Center>
+    <div className="flex flex-col gap-4 p-4">
+      <MovieCardSkeleton />
+      <MovieCardSkeleton />
+      <MovieCardSkeleton />
+    </div>
   );
 }

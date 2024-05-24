@@ -1,7 +1,7 @@
 "use client";
 
 import { getCombinedCredits } from "@/app/actions";
-import { Movie } from "@/components/movie";
+import { MovieCard } from "@/components/movie-card";
 import { type CombinedCredits } from "@/service/people/types";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -66,7 +66,7 @@ export const Credits = () => {
         const details = creditQueries[0].data!.cast.find((c) => c.id === id);
         if (!details) return null;
 
-        return <Movie key={details.id} movie={details} />;
+        return <MovieCard key={details.id} movie={details} />;
       }) ?? "No shared credits"}
     </div>
   );

@@ -1,9 +1,10 @@
 import { imgBasePath } from "@/lib/constants";
-import { type MovieDetails } from "@/service/movies/types";
+import { type Cast as MovieCast } from "@/service/movies/types";
+import { type Cast as SeriesCast } from "@/service/tv/types";
 import { Card, Heading, Image, Text } from "@chakra-ui/react";
 
 type CastCreditProps = {
-  credit: MovieDetails["credits"]["cast"][number];
+  credit: MovieCast | SeriesCast;
 };
 
 export const CastCredit = (props: CastCreditProps) => {

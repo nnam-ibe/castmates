@@ -15,6 +15,7 @@ export const castSchema = z.object({
   order: z.number().optional(),
   job: z.string().optional().catch(""),
 });
+export type Cast = z.infer<typeof castSchema>;
 
 export const genreSchema = z.object({
   id: z.number(),

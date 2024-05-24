@@ -1,38 +1,41 @@
 import { CastCredit } from "@/components/cast-credit";
 import { imgBasePath } from "@/lib/constants";
 import { Badge, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import { getMovie } from "./actions";
+import { getSeriesDetails } from "./action";
 
-const MovieDetailsPage = async ({
+const SeriesDetailsPage = async ({
   params,
   searchParams,
 }: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const movieId = parseInt(params.slug, 10);
-  const movie = await getMovie(movieId);
+  const seriesId = parseInt(params.slug, 10);
+  if (isNaN(seriesId)) {
+    return <div>Invalid series id</div>;
+  }
+  const series = await getSeriesDetails(seriesId);
 
-  const title = movie.title;
+  const title = series.name ?? "";
   let titleWithYear = `${title}`;
-  if (movie.release_date) {
-    titleWithYear += ` (${new Date(movie.release_date).getFullYear()})`;
+  if (series.first_air_date) {
+    titleWithYear += ` (${new Date(series.first_air_date).getFullYear()})`;
   }
 
   return (
     <div className="flex flex-col gap-4 p-12">
       <div className="flex gap-4">
         <Image
-          src={`${imgBasePath}${movie.poster_path}`}
+          src={`${imgBasePath}${series.poster_path}`}
           alt={`${title} Poster`}
           borderRadius="lg"
           boxSize="250"
         />
         <div className="flex flex-col gap-4">
           <Heading>{titleWithYear}</Heading>
-          <Text>{movie.overview}</Text>
+          <Text>{series.overview}</Text>
           <Stack direction="row">
-            {movie.genres.map((genre) => (
+            {series.genres?.map((genre) => (
               <Badge colorScheme="blue" key={genre.id}>
                 {genre.name}
               </Badge>
@@ -45,7 +48,7 @@ const MovieDetailsPage = async ({
           Cast
         </Heading>
         <div className="flex flex-col gap-4 overflow-x-scroll">
-          {movie.credits.cast.map((cast) => (
+          {series.credits?.cast?.map((cast) => (
             <CastCredit key={cast.id} credit={cast} />
           ))}
         </div>
@@ -54,4 +57,4 @@ const MovieDetailsPage = async ({
   );
 };
 
-export default MovieDetailsPage;
+export default SeriesDetailsPage;

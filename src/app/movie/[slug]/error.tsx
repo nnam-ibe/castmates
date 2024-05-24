@@ -1,5 +1,5 @@
 "use client";
-import { Center, Button, VStack, Heading } from "@chakra-ui/react";
+import { Button, Center, Heading, VStack } from "@chakra-ui/react";
 
 export default function Error({
   error,
