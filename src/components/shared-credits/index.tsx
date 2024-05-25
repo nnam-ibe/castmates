@@ -3,6 +3,7 @@
 import { getCombinedCredits } from "@/app/actions";
 import { MovieCard } from "@/components/movie-card";
 import { type CombinedCredits } from "@/service/people/types";
+import { Center, Text } from "@chakra-ui/react";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Loading } from "./loading";
@@ -29,7 +30,9 @@ function getSharedCredits(credits: CombinedCredits["cast"][]) {
 
 export const SharedCredits = () => {
   const searchParams = useSearchParams();
-  const people = searchParams.getAll("p").map((id) => parseInt(id, 10));
+  const disabledList = searchParams.getAll("f").map((id) => parseInt(id, 10));
+  const allPeople = searchParams.getAll("p").map((id) => parseInt(id, 10));
+  const people = allPeople.filter((id) => !disabledList.includes(id));
 
   const creditQueries = useQueries({
     queries: people.map((person) => {
@@ -56,7 +59,23 @@ export const SharedCredits = () => {
     enabled: isSharedCreditsEnabled,
   });
 
-  if (!isSharedCreditsEnabled || !sharedCreditsQuery.data) {
+  if (allPeople.length == 0) {
+    return (
+      <Center className="flex flex-1">
+        <Text>Search for people to get started</Text>
+      </Center>
+    );
+  }
+
+  if (people.length < 2) {
+    return (
+      <Center className="flex flex-1">
+        <Text>Need at least two people to display shared credits</Text>
+      </Center>
+    );
+  }
+
+  if (!isSharedCreditsEnabled) {
     return <Loading />;
   }
 

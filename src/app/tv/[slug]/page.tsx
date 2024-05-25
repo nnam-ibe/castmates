@@ -30,6 +30,7 @@ const SeriesDetailsPage = async ({
           alt={`${title} Poster`}
           borderRadius="lg"
           boxSize="250"
+          fallbackSrc="https://via.placeholder.com/150"
         />
         <div className="flex flex-col gap-4">
           <Heading>{titleWithYear}</Heading>

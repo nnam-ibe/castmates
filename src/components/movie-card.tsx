@@ -36,6 +36,7 @@ export const MovieCard = (props: MovieProps) => {
           src={`${imgBasePath}${movie.poster_path}`}
           alt={title}
           className="min-w-[100px] max-w-[100px]"
+          fallbackSrc="https://via.placeholder.com/150"
         />
       </Link>
       <Box p="2">
@@ -64,16 +65,16 @@ export const MovieCardSkeleton = () => (
       objectFit="contain"
       className="min-w-[100px] max-w-[100px]"
     />
-    <Box p="2">
+    <div className="flex flex-1 flex-col gap-2 pl-2 w-full">
       <Skeleton size="md" />
-      <Skeleton height="20px" />
-      <Skeleton height="20px" />
-      <Skeleton height="20px" paddingRight="5rem" />
+      <Skeleton height="15" rounded="md" />
+      <Skeleton height="15px" rounded="md" />
+      <Skeleton height="15px" rounded="md" marginRight="5rem" />
       <Stack direction="row">
-        <Skeleton width="50px" />
-        <Skeleton width="50px" />
-        <Skeleton width="50px" />
+        <Skeleton height="20px" width="50px" rounded="md" />
+        <Skeleton height="20px" width="50px" rounded="md" />
+        <Skeleton height="20px" width="50px" rounded="md" />
       </Stack>
-    </Box>
+    </div>
   </Flex>
 );

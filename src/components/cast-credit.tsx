@@ -17,6 +17,7 @@ export const CastCredit = (props: CastCreditProps) => {
         src={`${imgBasePath}${credit.profile_path}`}
         alt={credit.name}
         boxSize="150px"
+        fallbackSrc="https://via.placeholder.com/150"
       />
       <div className="p-3">
         <Heading size="sm">{credit.name}</Heading>
