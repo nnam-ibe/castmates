@@ -1,7 +1,7 @@
 "use client";
 
 import { searchPeople } from "@/app/actions";
-import { SearchIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
   Drawer,
@@ -36,10 +36,11 @@ export const SearchDrawer = () => {
   return (
     <>
       <Button
-        leftIcon={<SearchIcon />}
+        leftIcon={<AddIcon />}
         ref={btnRef.current}
         colorScheme="teal"
         onClick={onOpen}
+        className="w-full"
       >
         Add an actor
       </Button>
@@ -72,10 +73,9 @@ export const SearchDrawer = () => {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
             </Button>
-            <Button colorScheme="blue">Select</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
