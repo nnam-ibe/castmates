@@ -29,3 +29,8 @@ export const GenreMapping = {
   10767: "Talk",
   10768: "War & Politics",
 };
+
+export const cacheOptions = {
+  max: 100,
+  ttl: 1000 * 60 * 60 * 24 * 30,
+};

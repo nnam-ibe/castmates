@@ -74,3 +74,4 @@ export const tvDetailsSchema = z.object({
   type: z.string().optional().catch(""),
   credits: creditsSchema.optional(),
 });
+export type TvDetails = z.infer<typeof tvDetailsSchema>;
