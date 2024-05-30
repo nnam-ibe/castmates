@@ -62,6 +62,7 @@ export const personDetailSchema = z.object({
   popularity: z.number().optional().catch(0),
   profile_path: z.string().optional().catch(undefined),
 });
+export type PersonDetail = z.infer<typeof personDetailSchema>;
 
 export const castSchema = z.object({
   adult: z.boolean().catch(false),
