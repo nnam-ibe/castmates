@@ -9,8 +9,13 @@ import { useSearchParams } from "next/navigation";
 import { Loading } from "./loading";
 
 function getSharedCredits(credits: CombinedCredits["cast"][]) {
-  if (credits.length < 2) {
-    throw new Error("Need at least two credits to compare");
+  if (credits.length < 1) {
+    throw new Error("Need at least one credit list");
+  }
+
+  if (credits.length === 1) {
+    const ids = new Set(credits[0].map((c) => c.id));
+    return Array.from(ids);
   }
 
   const creditSets = credits.map((credit) => new Set(credit.map((c) => c.id)));
@@ -44,7 +49,7 @@ export const SharedCredits = () => {
   });
 
   const isSharedCreditsEnabled =
-    people.length >= 2 && creditQueries.every((q) => q.isSuccess);
+    people.length > 0 && creditQueries.every((q) => q.isSuccess);
   const sharedCreditsQuery = useQuery({
     queryKey: ["shared-credits", ...people],
     queryFn: () => {
@@ -63,14 +68,6 @@ export const SharedCredits = () => {
     return (
       <Center className="flex flex-1">
         <Text>Search for people to get started</Text>
-      </Center>
-    );
-  }
-
-  if (people.length < 2) {
-    return (
-      <Center className="flex flex-1">
-        <Text>Need at least two people to display shared credits</Text>
       </Center>
     );
   }
