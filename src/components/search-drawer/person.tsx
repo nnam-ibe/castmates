@@ -2,6 +2,7 @@ import { imgBasePath } from "@/lib/constants";
 import { Avatar, Box } from "@chakra-ui/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
+import { twMerge } from "tailwind-merge";
 
 type PersonResultProps = {
   id: number;
@@ -14,6 +15,7 @@ export const PersonResult = (props: PersonResultProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const _id = props.id.toString();
+  const isDisabled = searchParams.has("p", _id);
 
   const updateSearchParams = useCallback(() => {
     if (searchParams.has("p", _id)) return;
@@ -34,10 +36,13 @@ export const PersonResult = (props: PersonResultProps) => {
         borderColor: "#bec3c9",
       }}
       _disabled={{ bg: "#DCDCDC", transform: "none" }}
-      className="flex justify-start items-center w-full gap-4"
+      className={twMerge(
+        "flex justify-start items-center w-full gap-4",
+        isDisabled ? "cursor-not-allowed" : ""
+      )}
       px={2}
       onClick={updateSearchParams}
-      disabled={searchParams.has("p", _id)}
+      disabled={isDisabled}
     >
       <Avatar
         name={props.name}
