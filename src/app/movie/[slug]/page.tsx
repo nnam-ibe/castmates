@@ -5,7 +5,6 @@ import { getMovie } from "./actions";
 
 const MovieDetailsPage = async ({
   params,
-  searchParams,
 }: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };

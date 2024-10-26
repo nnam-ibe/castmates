@@ -2,12 +2,12 @@
 
 import { getCombinedCredits } from "@/app/actions";
 import { MovieCard } from "@/components/movie-card";
+import { SearchDrawer } from "@/components/search-drawer";
 import { type CombinedCredits } from "@/service/people/types";
 import { Center, Text } from "@chakra-ui/react";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Loading } from "./loading";
-import {SearchDrawer} from "@/components/search-drawer";
 
 function getSharedCredits(credits: CombinedCredits["cast"][]) {
   if (credits.length < 1) {
