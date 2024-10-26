@@ -7,6 +7,7 @@ import { Center, Text } from "@chakra-ui/react";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Loading } from "./loading";
+import {SearchDrawer} from "@/components/search-drawer";
 
 function getSharedCredits(credits: CombinedCredits["cast"][]) {
   if (credits.length < 1) {
@@ -64,10 +65,13 @@ export const SharedCredits = () => {
     enabled: isSharedCreditsEnabled,
   });
 
-  if (allPeople.length == 0) {
+  if (people.length == 0) {
     return (
       <Center className="flex flex-1">
-        <Text>Search for people to get started</Text>
+        <div>
+          <Text>Search for people to get started</Text>
+          <SearchDrawer />
+        </div>
       </Center>
     );
   }

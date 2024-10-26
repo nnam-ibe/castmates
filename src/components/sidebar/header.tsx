@@ -1,7 +1,7 @@
 "use client";
 
 import { SearchDrawer } from "@/components/search-drawer";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import { IconButton, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -19,9 +19,9 @@ export const Header = () => {
         <div className="h-14 text-white py-2 flex items-center gap-2">
           <span className="h-fit md:hidden">
             <IconButton
-              variant="ghost"
+              variant="subtle"
               aria-label="Open Search Menu"
-              icon={<HamburgerIcon />}
+              icon={<SearchIcon />}
               onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
             />
           </span>
