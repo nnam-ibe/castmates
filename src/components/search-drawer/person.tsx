@@ -33,7 +33,7 @@ export const PersonResult = (props: PersonResultProps) => {
         transform: "scale(0.98)",
         borderColor: "#bec3c9",
       }}
-      _disabled={{ bg: "#f5f5f5", transform: "none" }}
+      _disabled={{ bg: "#DCDCDC", transform: "none" }}
       className="flex justify-start items-center w-full gap-4"
       px={2}
       onClick={updateSearchParams}
