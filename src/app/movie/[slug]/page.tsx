@@ -5,7 +5,6 @@ import { getMovie } from "./actions";
 
 const MovieDetailsPage = async ({
   params,
-  searchParams,
 }: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -24,7 +23,7 @@ const MovieDetailsPage = async ({
 
   return (
     <div className="flex flex-col gap-4 p-12">
-      <div className="flex gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         <Image
           src={`${imgBasePath}${movie.poster_path}`}
           alt={`${title} Poster`}

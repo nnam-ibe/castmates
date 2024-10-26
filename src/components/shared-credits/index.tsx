@@ -2,6 +2,7 @@
 
 import { getCombinedCredits } from "@/app/actions";
 import { MovieCard } from "@/components/movie-card";
+import { SearchDrawer } from "@/components/search-drawer";
 import { type CombinedCredits } from "@/service/people/types";
 import { Center, Text } from "@chakra-ui/react";
 import { useQueries, useQuery } from "@tanstack/react-query";
@@ -64,10 +65,13 @@ export const SharedCredits = () => {
     enabled: isSharedCreditsEnabled,
   });
 
-  if (allPeople.length == 0) {
+  if (people.length == 0) {
     return (
       <Center className="flex flex-1">
-        <Text>Search for people to get started</Text>
+        <div>
+          <Text>Search for people to get started</Text>
+          <SearchDrawer />
+        </div>
       </Center>
     );
   }
