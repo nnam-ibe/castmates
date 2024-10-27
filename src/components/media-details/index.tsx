@@ -35,6 +35,7 @@ export const MediaDetails = (props: MediaDetailProps) => {
       <div className="flex flex-col md:flex-row gap-8 mb-8">
         <div className="w-full md:w-1/3">
           <Image
+            id="media-poster"
             src={`${imgBasePath}${media.poster_path}`}
             alt=""
             className="rounded-lg shadow-lg w-full"

@@ -16,11 +16,12 @@ export const CastCard = (props: CastCardProps) => {
     <Card key={cast.id} className="overflow-hidden">
       <div className="flex flex-col sm:flex-row">
         <Image
+          id="cast-profile-image"
           src={`${imgBasePath}${cast.profile_path}`}
           alt=""
           className="w-full sm:w-32 h-32 object-cover"
-          width={72}
-          height={72}
+          width={128}
+          height={128}
         />
         <CardContent className="p-4 flex-1">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
