@@ -1,0 +1,27 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "gender": 2,
+      "id": 1619557,
+      "known_for_department": "Acting",
+      "name": "Ryan",
+      "original_name": "Ryan",
+      "popularity": 2.009,
+      "profile_path": "/wlywpleg1obE0P8yXuROafGw2eI.jpg"
+    },
+    {
+      "adult": false,
+      "gender": 2,
+      "id": 10859,
+      "known_for_department": "Acting",
+      "name": "Ryan Reynolds",
+      "original_name": "Ryan Reynolds",
+      "popularity": 112.808,
+      "profile_path": "/algQ1VEno2W9SesoArWcZTeF617.jpg"
+    }
+  ],
+  "total_pages": 472,
+  "total_results": 9423
+}

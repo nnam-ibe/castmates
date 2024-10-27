@@ -45,17 +45,17 @@ export const seasonSchema = z.object({
 });
 
 export const creditsSchema = z.object({
-  cast: z.array(castSchema).optional().catch([]),
-  crew: z.array(castSchema).optional().catch([]),
+  cast: z.array(castSchema).catch([]),
+  crew: z.array(castSchema).catch([]),
 });
 export type Credits = z.infer<typeof creditsSchema>;
 
-export const tvDetailsSchema = z.object({
+export const rawTvDetailsSchema = z.object({
   adult: z.boolean().optional().catch(false),
   backdrop_path: z.string().optional().catch(""),
   episode_run_time: z.array(z.number()).optional().catch([]),
   first_air_date: z.coerce.date().nullable().optional().catch(null),
-  genres: z.array(genreSchema).optional().catch([]),
+  genres: z.array(genreSchema).catch([]),
   homepage: z.string().optional().catch(""),
   id: z.number(),
   in_production: z.boolean().optional().catch(false),
@@ -71,7 +71,19 @@ export const tvDetailsSchema = z.object({
   seasons: z.array(seasonSchema).optional().catch([]),
   status: z.string().optional().catch(""),
   tagline: z.string().optional().catch(""),
+  vote_average: z.number().optional().catch(0),
   type: z.string().optional().catch(""),
-  credits: creditsSchema.optional(),
+  credits: creditsSchema.catch({
+    cast: [],
+    crew: [],
+  }),
+});
+export type RawTvDetails = z.infer<typeof rawTvDetailsSchema>;
+
+export const tvDetailsSchema = rawTvDetailsSchema.transform((data) => {
+  return {
+    ...data,
+    mediaType: "tv",
+  };
 });
 export type TvDetails = z.infer<typeof tvDetailsSchema>;

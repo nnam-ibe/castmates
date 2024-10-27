@@ -1,4 +1,4 @@
-import { SharedCredits } from "@/components/shared-credits";
+import { SharedCredits } from "@/components/home";
 import { Suspense } from "react";
 import Loading from "./loading";
 

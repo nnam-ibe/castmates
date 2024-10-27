@@ -90,3 +90,13 @@ export const combinedCreditsSchema = z.object({
   id: z.number(),
 });
 export type CombinedCredits = z.infer<typeof combinedCreditsSchema>;
+
+export type MediaDetails = {
+  id: number;
+  title: string;
+  year: string;
+  posterPath: string;
+  mediaType: string;
+  genreIds: number[];
+  characters: Record<string, string>;
+};
