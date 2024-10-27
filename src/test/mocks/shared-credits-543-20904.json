@@ -1,0 +1,14 @@
+[
+  {
+    "id": "55326",
+    "title": "Adventures of Johnny Tao",
+    "year": "2008",
+    "posterPath": "/lOeJ0n6ezLsh3ezxlYpPQxHQByP.jpg",
+    "mediaType": "movie",
+    "genre_ids": [28, 12, 878, 53],
+    "characters": {
+      "543": "Kate",
+      "20904": "Sifu"
+    }
+  }
+]

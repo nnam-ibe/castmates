@@ -49,7 +49,7 @@ export const MovieCard = (props: MovieProps) => {
         <Stack direction="row">
           {movie.genre_ids.map((id) => (
             <Badge key={id} colorScheme="blue">
-              {GenreMapping[id as keyof typeof GenreMapping] ?? "-"}
+              {GenreMapping[id] ?? "-"}
             </Badge>
           ))}
         </Stack>

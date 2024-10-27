@@ -1,6 +1,6 @@
 export const imgBasePath = "https://image.tmdb.org/t/p/w500";
 
-export const GenreMapping = {
+export const GenreMapping: Record<string, string> = {
   28: "Action",
   12: "Adventure",
   16: "Animation",

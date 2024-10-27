@@ -28,7 +28,7 @@ export const creditsSchema = z.object({
 });
 export type Credits = z.infer<typeof creditsSchema>;
 
-export const movieDetails = z.object({
+export const rawMovieDetails = z.object({
   adult: z.boolean().catch(false),
   backdrop_path: z.string().catch(""),
   budget: z.number(),
@@ -39,10 +39,19 @@ export const movieDetails = z.object({
   poster_path: z.string().optional().catch(undefined),
   release_date: z.coerce.date().nullable().optional().catch(null),
   revenue: z.number().optional().catch(0),
-  runtime: z.number().optional().catch(0),
+  runtime: z.number().optional().catch(undefined),
+  vote_average: z.number().optional().catch(0),
   status: z.string().catch("Unknown"),
   tagline: z.string().catch(""),
   title: z.string().catch(""),
   credits: creditsSchema,
+});
+export type RawMovieDetails = z.infer<typeof rawMovieDetails>;
+
+export const movieDetails = rawMovieDetails.transform((data) => {
+  return {
+    ...data,
+    mediaType: "movie",
+  };
 });
 export type MovieDetails = z.infer<typeof movieDetails>;
