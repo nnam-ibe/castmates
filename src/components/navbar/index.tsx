@@ -1,5 +1,11 @@
 "use client";
 import { getPerson } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useQueries } from "@tanstack/react-query";
 import { Home, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -54,7 +60,7 @@ export const Navbar = () => {
           <Home className="w-6 h-6" />
         </a>
 
-        <div className="flex gap-2 overflow-x-auto flex-grow mx-4">
+        <div className="hidden md:flex gap-2 overflow-x-auto flex-grow mx-4">
           {people.map((person) => (
             <div
               key={person.id}
@@ -72,7 +78,32 @@ export const Navbar = () => {
           ))}
         </div>
 
-        <div className="text-sm text-gray-500">{people.length} selected</div>
+        <div className="text-sm text-gray-500 flex md:hidden">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button>{people.length} selected</Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-fit">
+              <div className="grid gap-4">
+                {people.map((person) => (
+                  <div
+                    key={person.id}
+                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center gap-2 justify-between text-sm"
+                  >
+                    <span>{person.name}</span>
+                    <button
+                      onClick={() => removePerson(person.id)}
+                      className="hover:text-blue-600"
+                      aria-label={`Remove ${person}`}
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
     </nav>
   );

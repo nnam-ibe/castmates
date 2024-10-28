@@ -1,4 +1,3 @@
-import MovieDetailsPage from "@/app/movie/[slug]/page";
 import { CastCard } from "@/components/media-details/cast-card";
 import { Badge } from "@/components/ui/badge";
 import { imgBasePath } from "@/lib/constants";
