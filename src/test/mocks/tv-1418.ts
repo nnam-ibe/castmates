@@ -1,4 +1,4 @@
-export default {
+export const mock = {
   adult: false,
   backdrop_path: "/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg",
   episode_run_time: [22],
@@ -899,3 +899,5 @@ export default {
   },
   mediaType: "tv",
 };
+
+export default mock;
