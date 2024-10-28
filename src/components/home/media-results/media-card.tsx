@@ -33,7 +33,11 @@ export const MediaCard = (props: MediaCardProps) => {
                 <p className="text-gray-600">{details.year}</p>
                 <div className="flex gap-2">
                   {details.genreIds.map((genreId) => {
-                    return <Badge>{GenreMapping[genreId] ?? "-"}</Badge>;
+                    return (
+                      <Badge key={genreId}>
+                        {GenreMapping[genreId] ?? "-"}
+                      </Badge>
+                    );
                   })}
                 </div>
               </div>
@@ -47,10 +51,12 @@ export const MediaCard = (props: MediaCardProps) => {
                 return (
                   <div key={personId} className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full">
-                      <img
+                      <Image
                         src={`${imgBasePath}${personDetails.profile_path}`}
                         alt={personDetails.name}
                         className="w-8 h-8 rounded-full object-cover"
+                        width={32}
+                        height={32}
                       />
                     </div>
                     <span className="font-medium">{personDetails.name}</span>
