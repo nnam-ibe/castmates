@@ -5,13 +5,13 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 import { Film } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { MediaCard } from "./media-card";
+import { MediaCardSkeleton } from "./skeleton";
 
 export const MediaResults = () => {
   const searchParams = useSearchParams();
   const disabledList = searchParams.getAll("f").map((id) => parseInt(id, 10));
   const allPeople = searchParams.getAll("p").map((id) => parseInt(id, 10));
   const peopleIds = allPeople.filter((id) => !disabledList.includes(id));
-  const params = new URLSearchParams(searchParams);
 
   const peopleQueries = useQueries({
     queries: peopleIds.map((personId) => {
@@ -46,6 +46,12 @@ export const MediaResults = () => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-3">
+          {sharedCreditsQuery.isLoading && (
+            <>
+              <MediaCardSkeleton />
+              <MediaCardSkeleton />
+            </>
+          )}
           {sharedCreditsQuery.data?.map((details) => (
             <MediaCard
               key={details.id}

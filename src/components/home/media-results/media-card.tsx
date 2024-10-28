@@ -21,8 +21,8 @@ export const MediaCard = (props: MediaCardProps) => {
               src={`${imgBasePath}${details.posterPath}`}
               className="w-24 h-36 rounded-md object-cover"
               alt={""}
-              width={72}
-              height={72}
+              width={144}
+              height={144}
             />
           </div>
 
