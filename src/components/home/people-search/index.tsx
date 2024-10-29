@@ -1,13 +1,12 @@
+import { PersonBadge } from "@/components/lib/person-badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { Person } from "./person";
 import { SearchBar } from "./search-bar";
 
 export const PeopleSearch = () => {
   const searchParams = useSearchParams();
-  const people = searchParams.getAll("p");
-
+  const people = searchParams.getAll("p").map((id) => parseInt(id, 10));
   return (
     <Card>
       <CardHeader>
@@ -18,10 +17,9 @@ export const PeopleSearch = () => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2 mb-4">
-          {people.map((personId) => {
-            const id = Number(personId);
-            return <Person key={id} id={id} />;
-          })}
+          {people.map((personId) => (
+            <PersonBadge key={personId} id={personId} />
+          ))}
         </div>
 
         {people.length < 10 && <SearchBar />}
