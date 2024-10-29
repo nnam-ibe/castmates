@@ -84,6 +84,8 @@ export const tvDetailsSchema = rawTvDetailsSchema.transform((data) => {
   return {
     ...data,
     mediaType: "tv",
+    title: data.name,
+    releaseDate: data.first_air_date,
   };
 });
 export type TvDetails = z.infer<typeof tvDetailsSchema>;

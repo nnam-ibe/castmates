@@ -64,26 +64,30 @@ export const personDetailSchema = z.object({
 });
 export type PersonDetail = z.infer<typeof personDetailSchema>;
 
-export const castSchema = z.object({
-  adult: z.boolean().catch(false),
-  backdrop_path: z.string().optional().catch(""),
-  genre_ids: z.array(z.number()).catch([]),
-  id: z.number(),
-  original_title: z.string().optional().catch(""),
-  overview: z.string().catch(""),
-  popularity: z.number().catch(0),
-  poster_path: z.string().optional().catch(""),
-  release_date: z.coerce.date().nullable().optional().catch(null),
-  title: z.string().optional().catch(""),
-  video: z.boolean().optional().catch(false),
-  character: z.string().optional().catch(""),
-  credit_id: z.string().catch(""),
-  order: z.number().optional().catch(0),
-  media_type: mediaType.catch("movie"),
-  original_name: z.string().optional().catch(""),
-  first_air_date: z.coerce.date().nullable().optional().catch(null),
-  name: z.string().optional().catch(""),
-});
+export const castSchema = z
+  .object({
+    adult: z.boolean().catch(false),
+    backdrop_path: z.string().optional().catch(""),
+    genre_ids: z.array(z.number()).catch([]),
+    id: z.number(),
+    original_title: z.string().optional().catch(""),
+    overview: z.string().catch(""),
+    popularity: z.number().catch(0),
+    poster_path: z.string().optional().catch(""),
+    release_date: z.coerce.date().nullable().optional().catch(null),
+    title: z.string().optional().catch(""),
+    video: z.boolean().optional().catch(false),
+    character: z.string().optional().catch(""),
+    credit_id: z.string().catch(""),
+    order: z.number().optional().catch(0),
+    media_type: mediaType.catch("movie"),
+    original_name: z.string().optional().catch(""),
+    first_air_date: z.coerce.date().nullable().optional().catch(null),
+    name: z.string().optional().catch(""),
+  })
+  .transform((data) => {
+    return { ...data, releaseDate: data.release_date ?? data.first_air_date };
+  });
 
 export const combinedCreditsSchema = z.object({
   cast: z.array(castSchema),

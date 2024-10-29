@@ -1,4 +1,4 @@
-import movie507903 from "@/test/mocks/movie-507903.json";
+import movie507903 from "@/test/mocks/movie-507903";
 import tv1418 from "@/test/mocks/tv-1418";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
