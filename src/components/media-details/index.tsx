@@ -13,20 +13,13 @@ type MediaDetailProps = {
 export const MediaDetails = (props: MediaDetailProps) => {
   const { media } = props;
 
-  let title = "";
-  let year = "";
+  const title = media.title ?? "";
+  const year = media.releaseDate
+    ? new Date(media.releaseDate).getFullYear().toString()
+    : "";
   let runtime = "";
   if (isMovie(media)) {
-    title = media.title ?? "";
     runtime = media.runtime?.toString() ?? "";
-    year = media.release_date
-      ? new Date(media.release_date).getFullYear().toString()
-      : "";
-  } else {
-    title = media.name ?? "";
-    year = media.first_air_date
-      ? new Date(media.first_air_date).getFullYear().toString()
-      : "";
   }
 
   return (

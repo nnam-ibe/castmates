@@ -1,7 +1,7 @@
 import { get } from "@/lib/client";
 import { cacheOptions } from "@/lib/constants";
 import { LRUCache } from "lru-cache";
-import type { CombinedCredits, PersonDetail, MediaDetails } from "./types";
+import type { CombinedCredits, MediaDetails, PersonDetail } from "./types";
 import {
   combinedCreditsSchema,
   peopleResponseSchema,
@@ -11,13 +11,7 @@ import {
 const peopleCache = new LRUCache<number, PersonDetail>(cacheOptions);
 const creditsCache = new LRUCache<number, CombinedCredits>(cacheOptions);
 
-export {
-  getCombinedCredits,
-  getPeople,
-  getPerson,
-  getSharedCredits,
-  searchPeople,
-};
+export { getCombinedCredits, getPerson, getSharedCredits, searchPeople };
 
 const searchPeople = async (query: string) => {
   if (query.length < 3) {
@@ -44,22 +38,6 @@ const getPerson = async (id: number): Promise<PersonDetail> => {
   return response;
 };
 
-const getPeople = async (
-  ids: number[]
-): Promise<Record<string, PersonDetail>> => {
-  if (!Array.isArray(ids)) throw new Error("ids must be an array");
-
-  const queries = ids.map((id) => getPerson(id));
-  const queryResults = await Promise.allSettled(queries);
-
-  const people: Record<string, PersonDetail> = {};
-  queryResults.forEach((res) => {
-    if (res.status !== "fulfilled") return;
-    people[res.value.id] = res.value;
-  });
-  return people;
-};
-
 const getCombinedCredits = async (id: number): Promise<CombinedCredits> => {
   if (typeof id !== "number" || isNaN(id)) throw new Error("Invalid id");
 
@@ -71,11 +49,11 @@ const getCombinedCredits = async (id: number): Promise<CombinedCredits> => {
   const response = combinedCreditsSchema.parse(rawResponse);
 
   response.cast = response.cast.sort((a, b) => {
-    if (a.release_date && b.release_date) {
-      return b.release_date.getTime() - a.release_date.getTime();
-    } else if (a.release_date) {
+    if (a.releaseDate && b.releaseDate) {
+      return b.releaseDate.getTime() - a.releaseDate.getTime();
+    } else if (a.releaseDate) {
       return -1;
-    } else if (b.release_date) {
+    } else if (b.releaseDate) {
       return 1;
     }
     return 0;
@@ -107,8 +85,8 @@ const getSharedCredits = async (ids: number[]): Promise<MediaDetails[]> => {
       mediaMap.set(creditDetails.id, {
         id: creditDetails.id,
         title: creditDetails.title ?? creditDetails.name ?? "(Unknown)",
-        year: creditDetails.release_date
-          ? new Date(creditDetails.release_date).getFullYear().toString()
+        year: creditDetails.releaseDate
+          ? new Date(creditDetails.releaseDate).getFullYear().toString()
           : "",
         posterPath: creditDetails.poster_path ?? "",
         mediaType: creditDetails.media_type,

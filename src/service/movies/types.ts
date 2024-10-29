@@ -52,6 +52,7 @@ export const movieDetails = rawMovieDetails.transform((data) => {
   return {
     ...data,
     mediaType: "movie",
+    releaseDate: data.release_date,
   };
 });
 export type MovieDetails = z.infer<typeof movieDetails>;
