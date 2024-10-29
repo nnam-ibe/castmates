@@ -136,6 +136,7 @@ describe("People service", () => {
           popularity: 1.705,
           poster_path: "/lOeJ0n6ezLsh3ezxlYpPQxHQByP.jpg",
           release_date: new Date("2008-07-29T00:00:00.000Z"),
+          releaseDate: new Date("2008-07-29T00:00:00.000Z"),
           title: "Adventures of Johnny Tao",
           video: false,
           character: "Kate",
@@ -152,6 +153,7 @@ describe("People service", () => {
             "When big-city preacher Debbie Laramie (Crystal Bernard) moves to the small town of Paradise with her son Hayden (Bobby Edner), she finds the local community unreceptive to her message of love and forgiveness. Determined to get through to her stubborn congregation, Debbie uses unique methods to shake the churchgoers out of their indifference, such as inviting a homeless man to sing during one of the services. Brian Dennehy co-stars.",
           popularity: 3.326,
           poster_path: "/azvbRarIrJWXVctKp7PMI4i17Rz.jpg",
+          releaseDate: new Date("2007-10-01T00:00:00.000Z"),
           release_date: new Date("2007-10-01T00:00:00.000Z"),
           title: "Welcome to Paradise",
           character: "Doris Fargo",
@@ -170,6 +172,7 @@ describe("People service", () => {
           popularity: 20.606,
           poster_path: "/v8aETLufi4WIinhQ994oWkehtaC.jpg",
           release_date: new Date("1984-07-20T00:00:00.000Z"),
+          releaseDate: new Date("1984-07-20T00:00:00.000Z"),
           title: "Revenge of the Nerds",
           video: false,
           character: "Woman",
@@ -189,6 +192,7 @@ describe("People service", () => {
           overview: "Sample Plot overview",
           popularity: 0,
           title: "Community unrelased movie",
+          releaseDate: undefined,
         },
       ]);
     });
