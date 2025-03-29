@@ -213,6 +213,7 @@ describe("People service", () => {
             "543": "Kate",
             "20904": "Sifu",
           },
+          overview: expect.stringContaining("Johnny Dow struggles"),
         },
       ]);
     });
