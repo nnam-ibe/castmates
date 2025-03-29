@@ -103,4 +103,5 @@ export type MediaDetails = {
   mediaType: string;
   genreIds: number[];
   characters: Record<string, string>;
+  overview: string;
 };

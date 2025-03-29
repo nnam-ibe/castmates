@@ -94,6 +94,7 @@ const getSharedCredits = async (ids: number[]): Promise<MediaDetails[]> => {
         characters: {
           [res.value.id]: creditDetails.character ?? "",
         },
+        overview: creditDetails.overview,
       });
       return;
     });

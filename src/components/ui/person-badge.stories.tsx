@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import { PersonBadgeUI } from "./person-badge-ui";
-import { boolean } from "zod";
 
 const meta = {
   component: PersonBadgeUI,
