@@ -19,7 +19,7 @@ export const CastCard = (props: CastCardProps) => {
           id="cast-profile-image"
           src={`${imgBasePath}${cast.profile_path}`}
           alt=""
-          className="w-full sm:w-32 h-32 object-cover"
+          className="w-full h-64 sm:w-32 sm:h-32 object-cover"
           width={128}
           height={128}
         />
