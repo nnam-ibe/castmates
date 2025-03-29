@@ -21,7 +21,8 @@ export const Primary: Story = {
       year: "1970",
       posterPath: "/7rXrab9F62uOZ7812LHmAmgvsBi.jpg",
       mediaType: "movie",
-      genreIds: [18],
+      // genreIds: [18, 10759, 37, 99],
+      genreIds: [18, 10759],
       characters: { "4492": "Father Reis" },
       overview:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse convallis condimentum euismod. Proin placerat pretium nunc, at congue arcu. Sed sit amet tincidunt ligula. Praesent vestibulum semper pharetra. Maecenas ultricies metus eget lorem scelerisque ultricies. Vestibulum quam odio, aliquet quis arcu vel, eleifend pharetra felis.",
